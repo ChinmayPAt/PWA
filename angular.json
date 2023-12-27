@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "trello-clone:build"
+            "buildTarget": "trello-clone:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "trello-clone:build:production"
+              "buildTarget": "trello-clone:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "trello-clone:build"
+            "buildTarget": "trello-clone:build"
           }
         },
         "test": {
