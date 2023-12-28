@@ -1,4 +1,4 @@
-export const enum status {
+export const enum statusTypes {
   DEFINED = '0',
   IN_PROGRESS = '1',
   DONE = '2',
@@ -6,6 +6,6 @@ export const enum status {
 
 export interface task {
   id: string;
-  status: status;
+  status: statusTypes;
   title: string;
 }
