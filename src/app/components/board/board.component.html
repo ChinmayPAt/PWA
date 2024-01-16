@@ -8,9 +8,9 @@
         }
         <div class="example-box add-task">
             <mat-form-field>
-                <input type="text" [formControl]="newTaskTodo" matInput>
+                <input type="text" [formControl]="newTaskTodo" matInput placeholder="Enter new task...">
             </mat-form-field>
-            <button (click)="addTask('todo')" mat-raised-button color="primary">add new task</button>
+            <button (click)="addTask('todo')" mat-raised-button color="primary">Add</button>
         </div>
     </div>
 </div>
@@ -25,9 +25,9 @@
         }
         <div class="example-box add-task">
             <mat-form-field>
-                <input type="text" [formControl]="newTaskInProgress" matInput>
+                <input type="text" [formControl]="newTaskInProgress" matInput placeholder="Enter new task...">
             </mat-form-field>
-            <button (click)="addTask('inProgress')" mat-raised-button color="primary">add new task</button>
+            <button (click)="addTask('inProgress')" mat-raised-button color="primary">Add</button>
         </div>
     </div>
 </div>
