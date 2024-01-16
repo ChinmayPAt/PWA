@@ -1,0 +1,35 @@
+.mat-mdc-card-content {
+  padding: 0px;
+
+  .card-form {
+    display: inline-block;
+    width: 100%;
+    width: -moz-available; /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+
+    ::ng-deep.mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+
+    button {
+      border: none;
+      background: inherit;
+      cursor: pointer;
+
+      :hover {
+        border-radius: 50%;
+        box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+      }
+    }
+  }
+}
+
+:host {
+  ::ng-deep.mat-mdc-card-content:last-child {
+    padding-bottom: 0px;
+  }
+  ::ng-deep.mat-mdc-card-content:first-child {
+    padding-top: 0px;
+  }
+}

@@ -1,1 +1,8 @@
-<div class="card"></div>
+<mat-card>
+  <mat-card-content>
+    <mat-form-field class="card-form" (mouseleave)="cannotEdit = true">
+      <input matInput class="card-input" [disabled]="cannotEdit">
+      <button matSuffix mat-icon-button (click)="editTask()"><mat-icon matSuffix class="card-icon"><img src="assets/edit.svg"></mat-icon></button>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>

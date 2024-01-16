@@ -13,6 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent, CardComponent, ListComponent, BoardComponent],
@@ -27,6 +29,8 @@ import { BrowserModule } from '@angular/platform-browser';
     MatFormFieldModule,
     BrowserAnimationsModule,
     CreateTaskComponent,
+    MatCardModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
