@@ -4,19 +4,31 @@
     <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList, inProgressList]"
         class="example-list" (cdkDropListDropped)="drop($event)">
         @for (item of todo; track item) {
-        <div class="example-box" cdkDrag>{{item}}</div>
+        <div class="example-box drag" cdkDrag>{{item}}</div>
         }
+        <div class="example-box add-task">
+            <mat-form-field>
+                <input type="text" [formControl]="newTaskTodo" matInput>
+            </mat-form-field>
+            <button (click)="addTask('todo')" mat-raised-button color="primary">add new task</button>
+        </div>
     </div>
 </div>
 
 <div class="example-container">
     <h2>In Progress</h2>
 
-    <div cdkDropList #inProgressList="cdkDropList" [cdkDropListData]="inProgress" [cdkDropListConnectedTo]="[todoList, doneList]"
-        class="example-list" (cdkDropListDropped)="drop($event)">
+    <div cdkDropList #inProgressList="cdkDropList" [cdkDropListData]="inProgress"
+        [cdkDropListConnectedTo]="[todoList, doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
         @for (item of inProgress; track item) {
-        <div class="example-box" cdkDrag>{{item}}</div>
+        <div class="example-box drag" cdkDrag>{{item}}</div>
         }
+        <div class="example-box add-task">
+            <mat-form-field>
+                <input type="text" [formControl]="newTaskInProgress" matInput>
+            </mat-form-field>
+            <button (click)="addTask('inProgress')" mat-raised-button color="primary">add new task</button>
+        </div>
     </div>
 </div>
 
@@ -26,7 +38,7 @@
     <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList, inProgressList]"
         class="example-list" (cdkDropListDropped)="drop($event)">
         @for (item of done; track item) {
-        <div class="example-box" cdkDrag>{{item}}</div>
+        <div class="example-box drag" cdkDrag>{{item}}</div>
         }
     </div>
 </div>

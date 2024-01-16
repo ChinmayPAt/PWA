@@ -4,6 +4,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-board',
@@ -13,9 +14,18 @@ import {
 export class BoardComponent implements OnInit {
   todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
 
-  inProgress = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  inProgress = [
+    'Get up',
+    'Brush teeth',
+    'Take a shower',
+    'Check e-mail',
+    'Walk dog',
+  ];
 
   done = [];
+
+  newTaskTodo = new FormControl<string>('');
+  newTaskInProgress = new FormControl<string>('');
 
   constructor() {}
 
@@ -35,6 +45,19 @@ export class BoardComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+    }
+  }
+
+  addTask(type: string) {
+    switch (type) {
+      case 'todo':
+        this.todo.push(this.newTaskTodo.value);
+        this.newTaskTodo.reset();
+        break;
+      case 'inProgress':
+        this.inProgress.push(this.newTaskInProgress.value);
+        this.newTaskInProgress.reset();
+        break;
     }
   }
 }

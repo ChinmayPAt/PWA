@@ -24,9 +24,16 @@
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
-    cursor: move;
     background: white;
     font-size: 14px;
+  }
+
+  .drag {
+    cursor: move;
+  }
+
+  .add-task {
+    cursor: unset;
   }
   
   .cdk-drag-preview {
