@@ -16,9 +16,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [AppComponent, CardComponent, ListComponent, BoardComponent],
+  declarations: [
+    AppComponent,
+    CardComponent,
+    ListComponent,
+    BoardComponent,
+    CreateTaskComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,10 +37,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatInputModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    CreateTaskComponent,
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
+    MatDialogModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

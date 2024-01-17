@@ -1,11 +1,11 @@
 <div class="container">
-  <h3 class="row justify-content-center mt-3">Create Task</h3>
-  <div class="row justify-content-center mt-3">
+  <h1 mat-dialog-title>Task Detail</h1>
+  <div mat-dialog-content>
     <form>
       <div>
         <mat-form-field>
           <mat-label>Title</mat-label>
-          <input type="text" formcontrolname="title" matInput />
+          <input type="text" [formControl]="taskForm.controls.title" matInput />
         </mat-form-field>
       </div>
 
@@ -18,17 +18,18 @@
 
       <div>
         <mat-form-field>
-          <mat-label>Status</mat-label>
+          <mat-label>Move status to</mat-label>
           <mat-select>
             @for (status of statusTypes; track status) {
-            <mat-option value="status" (click)="setStatus(status)">{{
+            <mat-option value="status" (click)="setStatus(status)" matInput>{{
               status
             }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
       </div>
-      <button mat-flat-button color="warn">Submit</button>
+      <button mat-flat-button color="primary">Save</button>
+      <button mat-flat-button color="warn" class="float-right">Cancel</button>
     </form>
   </div>
 </div>

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateTaskComponent } from '../create-task/create-task.component';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +11,7 @@ import { FormControl } from '@angular/forms';
 export class CardComponent implements OnInit {
   @Input() value: any;
   task = new FormControl({ value: '', disabled: true });
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -20,11 +22,11 @@ export class CardComponent implements OnInit {
   }
 
   editTask() {
-    this.task.enable();
     console.log('opened modal');
-  }
-
-  disableEdit() {
-    this.task.disable();
+    const dialogRef = this.dialog.open(CreateTaskComponent, {
+      data: {
+        title: this.task.value,
+      },
+    });
   }
 }
