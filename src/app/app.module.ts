@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatToolbarModule,
     MatDialogModule,
     MatSelectModule,
+    QuillModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
