@@ -1,0 +1,29 @@
+<div>
+    <button type="button" (click)="editor.chain().focus().toggleHeading({ level: 1 }).run()">
+        h1
+    </button>
+    <button type="button" (click)="editor.chain().focus().toggleHeading({ level: 2 }).run()">
+        h2
+    </button>
+    <button type="button" (click)="editor.chain().focus().toggleHeading({ level: 3 }).run()">
+        h3
+    </button>
+    <button type="button" (click)="editor.chain().focus().toggleHeading({ level: 4 }).run()">
+        h4
+    </button>
+    <button type="button" (click)="editor.chain().focus().toggleBold().run()">
+        Bold
+    </button>
+    <button type="button" (click)="editor.chain().focus().toggleBulletList().run()">
+        Bullets
+    </button>
+    <button type="button" (click)="editor.chain().focus().toggleItalic().run()">
+        Italic
+    </button>
+    <button type="button" (click)="editor.chain().focus().toggleOrderedList().run()">
+        List
+    </button>
+    <button type="button" (click)="editor.chain().focus().toggleTaskList().run()">
+        TaskList
+    </button>
+</div>

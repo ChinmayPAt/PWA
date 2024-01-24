@@ -18,7 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-import { QuillModule } from 'ngx-quill';
+import { NgxTiptapModule } from 'ngx-tiptap';
+import { TextEditorMenuComponent } from './components/text-editor-menu/text-editor-menu.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,8 @@ import { QuillModule } from 'ngx-quill';
     BoardComponent,
     CreateTaskComponent,
   ],
+  providers: [],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -43,9 +46,8 @@ import { QuillModule } from 'ngx-quill';
     MatToolbarModule,
     MatDialogModule,
     MatSelectModule,
-    QuillModule,
+    NgxTiptapModule,
+    TextEditorMenuComponent,
   ],
-  providers: [],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
