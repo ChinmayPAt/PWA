@@ -35,6 +35,10 @@ export class CreateTaskComponent {
     this.taskForm.controls.status.setValue(value);
   }
 
+  onSubmit() {
+    console.log(this.editor.getJSON());
+  }
+
   ngOnDestroy(): void {
     this.editor.destroy();
   }

@@ -23,7 +23,8 @@
     <button type="button" (click)="editor.chain().focus().toggleOrderedList().run()">
         List
     </button>
-    <button type="button" (click)="editor.chain().focus().toggleTaskList().run()">
+    <button type="button" (click)="editor.chain().focus().toggleTaskList().run()"
+        class="{editor.isActive('taskList') ? 'is-active' : ''}">
         TaskList
     </button>
 </div>
