@@ -30,7 +30,7 @@ export class BoardComponent implements OnInit {
     'Walk dog',
   ]; */
 
-  done: Array<any> = [];
+  done: Array<task> = [];
 
   newTaskTitleTodo = new FormControl<string>('');
   newTaskTitleInProgress = new FormControl<string>('');
@@ -50,8 +50,7 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    console.log(event);
+  drop(event: CdkDragDrop<task[]>, type: STATUS) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -65,10 +64,13 @@ export class BoardComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+      this.getStatusComponentData(type).list.forEach((item: task) => {
+        item.status = type;
+      });
     }
   }
 
-  private getStatusComponentData(status: string): any {
+  private getStatusComponentData(type: STATUS): any {
     const map = {
       TODO: {
         list: this.todo,
@@ -78,8 +80,11 @@ export class BoardComponent implements OnInit {
         list: this.inProgress,
         formControlValue: this.newTaskTitleInProgress.value,
       },
+      DONE: {
+        list: this.done,
+      },
     };
-    return map[status];
+    return map[type];
   }
 
   private generateUniqueID() {
@@ -95,5 +100,17 @@ export class BoardComponent implements OnInit {
       detail: '',
     };
     statusObject.list.push(newTask);
+  }
+
+  updateTask(newTask: task) {
+    this.getStatusComponentData(newTask.status).list =
+      this.getStatusComponentData(newTask.status).list.map(
+        (currentTask: task) => {
+          if (newTask.id === currentTask.id) {
+            currentTask.detail = newTask.detail;
+            currentTask.title = newTask.title;
+          }
+        }
+      );
   }
 }

@@ -18,17 +18,15 @@
       <div>
         <mat-form-field>
           <mat-label>Move status to</mat-label>
-          <mat-select>
+          <mat-select [formControl]="taskForm.controls.status">
             @for (status of statusTypes; track status) {
-            <mat-option value="status" (click)="setStatus(status)" matInput>{{
-              status
-            }}</mat-option>
+            <mat-option [value]="status" (click)="setStatus(status)" matInput>{{status}}</mat-option>
             }
           </mat-select>
         </mat-form-field>
       </div>
       <mat-dialog-actions align="start" class="p-0">
-        <button mat-flat-button color="warn">Cancel</button>
+        <button mat-flat-button color="warn" type="button" (click)="onCancel()">Cancel</button>
         <button mat-flat-button color="primary" type="button" (click)="onSubmit()">Save</button>
       </mat-dialog-actions>
     </form>
