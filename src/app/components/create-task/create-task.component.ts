@@ -28,9 +28,11 @@ export class CreateTaskComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    console.log(this.currentTaskData);
     this.taskForm.controls.title.setValue(this.currentTaskData.title);
     this.taskForm.controls.status.setValue(this.currentTaskData.status);
+    if (this.currentTaskData.detail.length > 0) {
+      this.editor.commands.setContent(this.currentTaskData.detail);
+    }
   }
 
   setStatus(value: STATUS) {
@@ -40,7 +42,7 @@ export class CreateTaskComponent {
   onSubmit() {
     const newTaskData: task = {
       title: this.taskForm.controls.title.value,
-      detail: this.editor.getJSON().toString(),
+      detail: this.editor.getHTML(),
       status: this.taskForm.controls.status.value,
       id: this.currentTaskData.id
     }

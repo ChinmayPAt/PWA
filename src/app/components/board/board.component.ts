@@ -75,10 +75,12 @@ export class BoardComponent implements OnInit {
       TODO: {
         list: this.todo,
         formControlValue: this.newTaskTitleTodo.value,
+        resetFormControl: this.newTaskTitleTodo.reset(),
       },
       IN_PROGRESS: {
         list: this.inProgress,
         formControlValue: this.newTaskTitleInProgress.value,
+        resetFormControl: this.newTaskTitleInProgress.reset(),
       },
       DONE: {
         list: this.done,
@@ -100,6 +102,7 @@ export class BoardComponent implements OnInit {
       detail: '',
     };
     statusObject.list.push(newTask);
+    statusObject.resetFormControl;
   }
 
   updateTask(newTask: task) {
