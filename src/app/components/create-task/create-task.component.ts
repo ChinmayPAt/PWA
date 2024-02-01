@@ -5,6 +5,7 @@ import { Editor } from '@tiptap/core';
 import TaskItem from '@tiptap/extension-task-item';
 import TaskList from '@tiptap/extension-task-list';
 import StarterKit from '@tiptap/starter-kit';
+import { task } from 'src/app/interfaces/task';
 
 @Component({
   selector: 'app-create-task',
@@ -22,7 +23,7 @@ export class CreateTaskComponent {
     extensions: [StarterKit, TaskList, TaskItem],
   });
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { title: string }) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: task) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.

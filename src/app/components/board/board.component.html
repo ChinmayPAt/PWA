@@ -4,13 +4,13 @@
     <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList, inProgressList]"
         class="example-list" (cdkDropListDropped)="drop($event)">
         @for (item of todo; track item) {
-        <app-card class="example-box drag" cdkDrag [value]="item"></app-card>
+        <app-card class="example-box drag" cdkDrag [taskData]="item"></app-card>
         }
         <div class="example-box add-task">
             <mat-form-field>
-                <input type="text" [formControl]="newTaskTodo" matInput placeholder="Enter new task...">
+                <input type="text" [formControl]="newTaskTitleTodo" matInput placeholder="Enter new task...">
             </mat-form-field>
-            <button (click)="addTask('todo')" mat-raised-button color="primary">Add</button>
+            <button (click)="addNewTask(statusTypes.TODO)" mat-raised-button color="primary">Add</button>
         </div>
     </div>
 </div>
@@ -21,13 +21,13 @@
     <div cdkDropList #inProgressList="cdkDropList" [cdkDropListData]="inProgress"
         [cdkDropListConnectedTo]="[todoList, doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
         @for (item of inProgress; track item) {
-        <app-card class="example-box drag" cdkDrag [value]="item"></app-card>
+        <app-card class="example-box drag" cdkDrag [taskData]="item"></app-card>
         }
         <div class="example-box add-task">
             <mat-form-field>
-                <input type="text" [formControl]="newTaskInProgress" matInput placeholder="Enter new task...">
+                <input type="text" [formControl]="newTaskTitleInProgress" matInput placeholder="Enter new task...">
             </mat-form-field>
-            <button (click)="addTask('inProgress')" mat-raised-button color="primary">Add</button>
+            <button (click)="addNewTask(statusTypes.IN_PROGRESS)" mat-raised-button color="primary">Add</button>
         </div>
     </div>
 </div>
@@ -38,7 +38,7 @@
     <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList, inProgressList]"
         class="example-list" (cdkDropListDropped)="drop($event)">
         @for (item of done; track item) {
-        <app-card class="example-box drag" cdkDrag [value]="item"></app-card>
+        <app-card class="example-box drag" cdkDrag [taskData]="item"></app-card>
         }
     </div>
 </div>
