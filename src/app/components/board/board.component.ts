@@ -42,7 +42,7 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.board = data;
     console.log(this.board);
-    this.todo = this.board.taskList.filter((task) => {
+    this.todo = this.board.taskList.filter((task: { status: STATUS; }) => {
       task.status === this.statusTypes.TODO;
     });
     this.inProgress = this.board.taskList.filter((task) => {
