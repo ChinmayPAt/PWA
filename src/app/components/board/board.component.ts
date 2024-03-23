@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { FormControl } from '@angular/forms';
 import { board, task } from 'src/app/interfaces/task';
 import { STATUS } from 'src/app/interfaces/task';
@@ -42,21 +38,17 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.board = data;
     console.log(this.board);
-    this.todo = this.board.taskList.filter((task: { status: STATUS; }) => {
+    this.todo = this.board.taskList.filter((task: { status: STATUS }) => {
       task.status === this.statusTypes.TODO;
     });
-    this.inProgress = this.board.taskList.filter((task) => {
+    this.inProgress = this.board.taskList.filter((task: { status: STATUS }) => {
       task.status === this.statusTypes.IN_PROGRESS;
     });
   }
 
   drop(event: CdkDragDrop<task[]>, type: STATUS) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -106,14 +98,13 @@ export class BoardComponent implements OnInit {
   }
 
   updateTask(newTask: task) {
-    this.getStatusComponentData(newTask.status).list =
-      this.getStatusComponentData(newTask.status).list.map(
-        (currentTask: task) => {
-          if (newTask.id === currentTask.id) {
-            currentTask.detail = newTask.detail;
-            currentTask.title = newTask.title;
-          }
-        }
-      );
+    this.getStatusComponentData(newTask.status).list = this.getStatusComponentData(
+      newTask.status
+    ).list.map((currentTask: task) => {
+      if (newTask.id === currentTask.id) {
+        currentTask.detail = newTask.detail;
+        currentTask.title = newTask.title;
+      }
+    });
   }
 }
