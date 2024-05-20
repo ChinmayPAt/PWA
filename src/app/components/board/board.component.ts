@@ -31,12 +31,13 @@ export class BoardComponent implements OnInit {
   newTaskTitleTodo = new FormControl<string>('');
   newTaskTitleInProgress = new FormControl<string>('');
   statusTypes = STATUS;
-  board: board | any = null;
+  board: board | any = data;
 
   constructor() {}
 
   ngOnInit(): void {
     this.board = data;
+    console.log(data);
     console.log(this.board);
     this.todo = this.board.taskList.filter((task: { status: STATUS }) => {
       task.status === this.statusTypes.TODO;
