@@ -1,34 +1,40 @@
 <div class="container">
-  <h3 class="row justify-content-center mt-3">Create Task</h3>
-  <div class="row justify-content-center mt-3">
+  <h1 mat-dialog-title>Task Detail</h1>
+  <mat-dialog-content class="mat-typography">
     <form>
       <div>
         <mat-form-field>
           <mat-label>Title</mat-label>
-          <input type="text" formcontrolname="title" matInput />
+          <input type="text" [formControl]="taskForm.controls.title" matInput />
         </mat-form-field>
+      </div>
+
+      <div class="text-editor-div">
+        <label>Details</label>
+        <text-editor-menu [editor]="editor" placeholder="start typing here ..."></text-editor-menu>
+        <tiptap-editor [editor]="editor"></tiptap-editor>
       </div>
 
       <div>
         <mat-form-field>
-          <mat-label>Details</mat-label>
-          <textarea matInput></textarea>
-        </mat-form-field>
-      </div>
-
-      <div>
-        <mat-form-field>
-          <mat-label>Status</mat-label>
-          <mat-select>
+          <mat-label>Move status to</mat-label>
+          <mat-select [formControl]="taskForm.controls.status">
             @for (status of statusTypes; track status) {
-            <mat-option value="status" (click)="setStatus(status)">{{
+            <mat-option [value]="status" (click)="setStatus(status)" matInput>{{
               status
-            }}</mat-option>
+              }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
       </div>
-      <button mat-flat-button color="warn">Submit</button>
+      <mat-dialog-actions align="start" class="p-0">
+        <button mat-flat-button color="warn" type="button" (click)="onCancel()">
+          Cancel
+        </button>
+        <button mat-flat-button color="primary" type="button" (click)="onSubmit()">
+          Save
+        </button>
+      </mat-dialog-actions>
     </form>
-  </div>
+  </mat-dialog-content>
 </div>

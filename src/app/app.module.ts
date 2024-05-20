@@ -15,9 +15,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { NgxTiptapModule } from 'ngx-tiptap';
+import { TextEditorMenuComponent } from './components/text-editor-menu/text-editor-menu.component';
 
 @NgModule({
-  declarations: [AppComponent, CardComponent, ListComponent, BoardComponent],
+  declarations: [
+    AppComponent,
+    CardComponent,
+    ListComponent,
+    BoardComponent,
+    CreateTaskComponent,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,11 +41,13 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    CreateTaskComponent,
     MatCardModule,
     MatIconModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatSelectModule,
+    NgxTiptapModule,
+    TextEditorMenuComponent,
   ],
-  providers: [],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

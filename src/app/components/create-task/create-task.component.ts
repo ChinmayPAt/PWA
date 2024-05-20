@@ -1,28 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCardModule } from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import { statusTypes } from 'src/app/interfaces/task';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Editor } from '@tiptap/core';
+import TaskItem from '@tiptap/extension-task-item';
+import TaskList from '@tiptap/extension-task-list';
+import StarterKit from '@tiptap/starter-kit';
+import { STATUS, task } from 'src/app/interfaces/task';
 
 @Component({
   selector: 'app-create-task',
-  standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatButtonModule],
   templateUrl: './create-task.component.html',
   styleUrl: './create-task.component.scss',
 })
 export class CreateTaskComponent {
-  public taskForm = new FormGroup({
+  taskForm = new FormGroup({
     title: new FormControl('', Validators.required),
     detail: new FormControl(''),
-    status: new FormControl('', Validators.required),
+    status: new FormControl<STATUS>({ value: null, disabled: true }, Validators.required),
   });
-  public statusTypes: string[] = ['Defined', 'In Progress', 'Done'];
+  statusTypes: STATUS[] = [STATUS.TODO, STATUS.IN_PROGRESS, STATUS.DONE];
+  editor = new Editor({
+    extensions: [StarterKit, TaskList, TaskItem],
+  });
 
-  public setStatus(value: string) {
+  constructor(@Inject(MAT_DIALOG_DATA) public currentTaskData: task, private dialogRef: MatDialogRef<CreateTaskComponent>) { }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.taskForm.controls.title.setValue(this.currentTaskData.title);
+    this.taskForm.controls.status.setValue(this.currentTaskData.status);
+    if (this.currentTaskData.detail.length > 0) {
+      this.editor.commands.setContent(this.currentTaskData.detail);
+    }
+  }
+
+  setStatus(value: STATUS) {
     this.taskForm.controls.status.setValue(value);
+  }
+
+  onSubmit() {
+    const newTaskData: task = {
+      title: this.taskForm.controls.title.value,
+      detail: this.editor.getHTML(),
+      status: this.taskForm.controls.status.value,
+      id: this.currentTaskData.id
+    }
+    this.dialogRef.close(newTaskData);
+  }
+
+  onCancel() {
+    this.dialogRef.close(null);
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
   }
 }

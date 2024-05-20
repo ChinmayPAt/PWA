@@ -1,0 +1,41 @@
+{
+  "id": "0001",
+  "taskList": [
+    {
+      "id": "0001",
+      "status": "TODO",
+      "title": "Get to work",
+      "detail": null
+    },
+    {
+      "id": "0002",
+      "status": "TODO",
+      "title": "Pick up groceries",
+      "detail": null
+    },
+    {
+      "id": "0003",
+      "status": "TODO",
+      "title": "Go home",
+      "detail": null
+    },
+    {
+      "id": "0004",
+      "status": "IN_PROGRESS",
+      "title": "Fall asleep",
+      "detail": null
+    },
+    {
+      "id": "0005",
+      "status": "IN_PROGRESS",
+      "title": "Get up",
+      "detail": null
+    },
+    {
+      "id": "0006",
+      "status": "IN_PROGRESS",
+      "title": "Brush teeth",
+      "detail": null
+    }
+  ]
+}
