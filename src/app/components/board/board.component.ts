@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { FormControl } from '@angular/forms';
-import { board, task } from 'src/app/interfaces/task';
-import { STATUS } from 'src/app/interfaces/task';
+import { Board, Task } from 'src/app/models/task.model';
 import * as data from '../../../assets/board.json';
 
 @Component({
-    selector: 'app-board',
-    templateUrl: './board.component.html',
-    styleUrls: ['./board.component.scss'],
-    standalone: false
+  selector: 'app-board',
+  templateUrl: './board.component.html',
+  styleUrls: ['./board.component.scss'],
+  standalone: false,
 })
 export class BoardComponent implements OnInit {
-  todo: Array<task> = []; /*  = [
+  todo: Array<Task> = []; /*  = [
     'Get to work',
     'Pick up groceries',
     'Go home',
     'Fall asleep',
   ]; */
 
-  inProgress: Array<task> = []; /* = [
+  inProgress: Array<Task> = []; /* = [
     'Get up',
     'Brush teeth',
     'Take a shower',
@@ -27,12 +26,12 @@ export class BoardComponent implements OnInit {
     'Walk dog',
   ]; */
 
-  done: Array<task> = [];
+  done: Array<Task> = [];
 
   newTaskTitleTodo = new FormControl<string>('');
   newTaskTitleInProgress = new FormControl<string>('');
-  statusTypes = STATUS;
-  board: board | any = data;
+  statusTypes = '';
+  board: Board | any = data;
 
   constructor() {}
 
@@ -40,15 +39,15 @@ export class BoardComponent implements OnInit {
     this.board = data;
     console.log(data);
     console.log(this.board);
-    this.todo = this.board.taskList.filter((task: { status: STATUS }) => {
+    /* this.todo = this.board.taskList.filter((task: { status: string }) => {
       task.status === this.statusTypes.TODO;
     });
-    this.inProgress = this.board.taskList.filter((task: { status: STATUS }) => {
+    this.inProgress = this.board.taskList.filter((task: { status: string }) => {
       task.status === this.statusTypes.IN_PROGRESS;
-    });
+    }); */
   }
 
-  drop(event: CdkDragDrop<task[]>, type: STATUS) {
+  drop(event: CdkDragDrop<Task[]>, type: string) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -58,13 +57,13 @@ export class BoardComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      this.getStatusComponentData(type).list.forEach((item: task) => {
-        item.status = type;
+      this.getStatusComponentData(type).list.forEach((item: Task) => {
+        item.listName = type;
       });
     }
   }
 
-  private getStatusComponentData(type: STATUS): any {
+  private getStatusComponentData(type: string): any {
     const map = {
       TODO: {
         list: this.todo,
@@ -87,22 +86,22 @@ export class BoardComponent implements OnInit {
     return Math.floor(Math.random() * Date.now()).toString(16);
   }
 
-  addNewTask(type: STATUS) {
+  addNewTask(type: string) {
     const statusObject = this.getStatusComponentData(type);
-    const newTask: task = {
+    const newTask: Task = {
       title: statusObject.formControlValue,
       id: this.generateUniqueID(),
-      status: type,
+      listName: type,
       detail: '',
     };
     statusObject.list.push(newTask);
     statusObject.resetFormControl;
   }
 
-  updateTask(newTask: task) {
-    this.getStatusComponentData(newTask.status).list = this.getStatusComponentData(
-      newTask.status
-    ).list.map((currentTask: task) => {
+  updateTask(newTask: Task) {
+    this.getStatusComponentData(newTask.listName).list = this.getStatusComponentData(
+      newTask.listName
+    ).list.map((currentTask: Task) => {
       if (newTask.id === currentTask.id) {
         currentTask.detail = newTask.detail;
         currentTask.title = newTask.title;

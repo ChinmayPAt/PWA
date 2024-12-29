@@ -20,6 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxTiptapModule } from 'ngx-tiptap';
 import { TextEditorMenuComponent } from './components/text-editor-menu/text-editor-menu.component';
+import { BoardStore } from './state/board.state';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,8 +30,9 @@ import { TextEditorMenuComponent } from './components/text-editor-menu/text-edit
     ListComponent,
     BoardComponent,
     CreateTaskComponent,
+    TextEditorMenuComponent,
   ],
-  providers: [],
+  providers: [BoardStore, provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
@@ -47,7 +50,6 @@ import { TextEditorMenuComponent } from './components/text-editor-menu/text-edit
     MatDialogModule,
     MatSelectModule,
     NgxTiptapModule,
-    TextEditorMenuComponent,
   ],
 })
 export class AppModule {}

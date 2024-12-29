@@ -2,17 +2,17 @@ import { Component, Input, OnInit, Output, SimpleChanges, EventEmitter } from '@
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskComponent } from '../create-task/create-task.component';
-import { task } from 'src/app/interfaces/task';
+import { Task } from 'src/app/models/task.model';
 
 @Component({
-    selector: 'app-card',
-    templateUrl: './card.component.html',
-    styleUrls: ['./card.component.scss'],
-    standalone: false
+  selector: 'app-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.scss'],
+  standalone: false,
 })
 export class CardComponent implements OnInit {
-  @Input() taskData: task;
-  @Output() updateTaskEvent = new EventEmitter<task>();
+  @Input() taskData: Task;
+  @Output() updateTaskEvent = new EventEmitter<Task>();
   taskTitle = new FormControl({ value: '', disabled: true });
   constructor(private dialog: MatDialog) {}
 
@@ -28,14 +28,17 @@ export class CardComponent implements OnInit {
 
   editTask() {
     console.log('opened modal');
-    this.dialog.open(CreateTaskComponent, {
-      data: this.taskData,
-    }).afterClosed().subscribe(res => {
-      // console.log(res);
-      if (res) {
-        this.taskTitle.setValue(res.title);
-        this.updateTaskEvent.emit(res);
-      }
-    });
+    this.dialog
+      .open(CreateTaskComponent, {
+        data: this.taskData,
+      })
+      .afterClosed()
+      .subscribe(res => {
+        // console.log(res);
+        if (res) {
+          this.taskTitle.setValue(res.title);
+          this.updateTaskEvent.emit(res);
+        }
+      });
   }
 }
