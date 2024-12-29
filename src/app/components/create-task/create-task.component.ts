@@ -8,9 +8,10 @@ import StarterKit from '@tiptap/starter-kit';
 import { STATUS, task } from 'src/app/interfaces/task';
 
 @Component({
-  selector: 'app-create-task',
-  templateUrl: './create-task.component.html',
-  styleUrl: './create-task.component.scss',
+    selector: 'app-create-task',
+    templateUrl: './create-task.component.html',
+    styleUrl: './create-task.component.scss',
+    standalone: false
 })
 export class CreateTaskComponent {
   taskForm = new FormGroup({
