@@ -21,6 +21,8 @@
     "@angular/platform-browser": "^19.0.5",
     "@angular/platform-browser-dynamic": "^19.0.5",
     "@angular/router": "^19.0.5",
+    "@ngrx/operators": "^19.0.0",
+    "@ngrx/signals": "^19.0.0",
     "@tiptap/core": "^2.1.16",
     "@tiptap/extension-bubble-menu": "^2.1.16",
     "@tiptap/extension-floating-menu": "^2.1.16",
